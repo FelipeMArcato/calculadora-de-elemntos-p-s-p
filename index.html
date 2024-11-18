@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Combinações</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .resultado {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Calculadora de Combinações</h2>
+    <input type="number" id="n" placeholder="Digite o valor de n" min="0">
+    <input type="number" id="p" placeholder="Digite o valor de p" min="0">
+    <button onclick="calcularCombinacao()">Calcular</button>
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function fatorial(num) {
+      if (num === 0 || num === 1) {
+        return 1;
+      }
+      let resultado = 1;
+      for (let i = 2; i <= num; i++) {
+        resultado *= i;
+      }
+      return resultado;
+    }
+
+    function combinacao(n, p) {
+      if (n < p || n < 0 || p < 0) {
+        return "Valores inválidos!";
+      }
+      return fatorial(n) / (fatorial(p) * fatorial(n - p));
+    }
+
+    function calcularCombinacao() {
+      const n = parseInt(document.getElementById("n").value);
+      const p = parseInt(document.getElementById("p").value);
+      const resultado = combinacao(n, p);
+      document.getElementById("resultado").innerText = `C(${n}, ${p}) = ${resultado}`;
+    }
+  </script>
+</body>
+</html>
